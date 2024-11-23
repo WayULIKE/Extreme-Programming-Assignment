@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.UserDao">
+
+    <select id="find" resultType="com.example.entity.User">
+        select * from user
+        <where>
+            <if test="params != null and params.name !='' and params.name !=null">
+                and name like concat('%',#{params.name},'%')
+            </if>
+        </where>
+    </select>
+    <select id="find1" resultType="com.example.entity.User">
+        select * from user
+        <where>
+            <if test="params != null and params.name !='' and params.name !=null">
+                and name like concat('%',#{params.name},'%')
+            </if>
+            <if test="params != null and params.isshoucang != null and params.isshoucang != ''">
+                and isshoucang like concat('%', #{ params.isshoucang }, '%')
+            </if>
+        </where>
+    </select>
+
+
+
+</mapper>
